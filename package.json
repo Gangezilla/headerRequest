@@ -1,0 +1,16 @@
+{
+  "name": "header-request",
+  "version": "0.0.1",
+  "description": "microservice to output information in broswer header",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Gangezilla",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "request": ">=2.71.0"
+  }
+}
