@@ -5,7 +5,8 @@ var output= {
 	'language': null,
 	'software': null
 };
-app.listen(3000);
+var port = process.env.PORT || 8080;
+app.listen(port);
 
 app.get('/', function(req, res) {
     getData(req);
