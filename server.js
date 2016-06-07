@@ -1,22 +1,20 @@
 var express = require('express');
-var request = require('request');
 var app = express();
 var output= {
 	'ip': null,
 	'language': null,
 	'software': null
 };
-var re=/\(([^)]+)\)/;
-
-app.listen(3000, function() {});
+app.listen(3000);
 
 app.get('/', function(req, res) {
-    console.log(req);
-    var userLang=(req.headers['accept-language']).split(',');
-    output.language=userLang[0];
-    output.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
-    output.software=(re.exec(req.headers['user-agent'])[1]);
-    console.log(output);
+    getData(req);
+    res.send(output);
 });
 
-//need to figure out if my ip section is because my internet is down or because i did something wrong (porque no los dos)? otherwise, close!
+function getData(req) {
+    var userLang=(req.headers['accept-language']).split(',');
+    output.language=userLang[0];
+    output.ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
+    output.software=(/\(([^)]+)\)/.exec(req.headers['user-agent'])[1]);
+}
